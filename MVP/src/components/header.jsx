@@ -9,7 +9,10 @@ export default function Header(props) {
   const [visible, setVisible] = useState(false);
   let navigate = useNavigate();
 
-  const handleUserProfileAction = (event) => {};
+  const handleUserProfileAction = (event) => {
+    console.log(event)
+    setVisible(true)
+  };
 
   return (
     <div id="top-nav">

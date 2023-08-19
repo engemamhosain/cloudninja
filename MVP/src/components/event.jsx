@@ -86,19 +86,19 @@ export default function Recommended() {
             <SpaceBetween size="m">
               <Header
                 variant="h1"
-                description="Top products"
+                description="Top Event"
                 actions={
                   <AdminControls
                     showNewProduct={true}
                     showNewCategory={true}
-                    productButtonText={"New Product"}
-                    categoryButtonText={"New Category"}
+                    productButtonText={"New Event"}
+                    categoryButtonText={"New Type"}
                     alertHandler={alertHandler}
                     product={null}
                   />
                 }
               >
-                Recommended
+                Aws ninja 
               </Header>
               {showAlert
               ? <Alert type={alertStatus.type}>{alertStatus.message}</Alert>
