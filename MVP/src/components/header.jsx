@@ -4,14 +4,21 @@ import { useNavigate } from "react-router-dom";
 import Modal from "@cloudscape-design/components/modal";
 import TopNavigation from "@cloudscape-design/components/top-navigation";
 
+import { Auth } from 'aws-amplify';
+
 export default function Header(props) {
-  const user = undefined;
+  console.log(props?.user)
+  const user = props?.user;
   const [visible, setVisible] = useState(false);
   let navigate = useNavigate();
 
-  const handleUserProfileAction = (event) => {
-    console.log(event)
-    setVisible(true)
+  const handleUserProfileAction = async (event) => {
+        try {
+        await Auth.signOut();
+      } catch (error) {
+        console.log('error signing out: ', error);
+      }
+  
   };
 
   return (

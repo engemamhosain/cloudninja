@@ -5,6 +5,8 @@ import { DataStore } from "@aws-amplify/datastore";
 
 import { List, ListItem, Icon, } from '@aws-amplify/ui-react';
 
+import { Auth } from 'aws-amplify';
+
 import {
   Table,
   TableHead,
@@ -68,8 +70,20 @@ const users = [
         console.log("Error retrieving category", error);
       }
     }
+    
+    
+     async function fetchAllUsers() {
+      try {
+        const userList = await Auth.listUsers();
+        console.log(userList)
+       // setUsers(userList);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    }
 
     
+   // fetchAllUsers()
 
   
   }, [name, filteredStyles, prevName]);
