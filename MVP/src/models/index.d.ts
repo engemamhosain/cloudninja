@@ -1,14 +1,14 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
 
 
-type EagerBlogModel = {
+type EagerCategoryModel = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<BlogModel, 'id'>;
+    identifier: ManagedIdentifier<CategoryModel, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -18,9 +18,9 @@ type EagerBlogModel = {
   readonly updatedAt?: string | null;
 }
 
-type LazyBlogModel = {
+type LazyCategoryModel = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<BlogModel, 'id'>;
+    identifier: ManagedIdentifier<CategoryModel, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -30,118 +30,68 @@ type LazyBlogModel = {
   readonly updatedAt?: string | null;
 }
 
-export declare type BlogModel = LazyLoading extends LazyLoadingDisabled ? EagerBlogModel : LazyBlogModel
+export declare type CategoryModel = LazyLoading extends LazyLoadingDisabled ? EagerCategoryModel : LazyCategoryModel
 
-export declare const BlogModel: (new (init: ModelInit<BlogModel>) => BlogModel) & {
-  copyOf(source: BlogModel, mutator: (draft: MutableModel<BlogModel>) => MutableModel<BlogModel> | void): BlogModel;
+export declare const CategoryModel: (new (init: ModelInit<CategoryModel>) => CategoryModel) & {
+  copyOf(source: CategoryModel, mutator: (draft: MutableModel<CategoryModel>) => MutableModel<CategoryModel> | void): CategoryModel;
 }
 
-type EagerCategory = {
+type EagerProductModel = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Category, 'id'>;
+    identifier: ManagedIdentifier<ProductModel, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly name?: string | null;
-  readonly description?: string | null;
-  readonly styles?: string | null;
-  readonly Products?: (Product | null)[] | null;
-  readonly images?: string | null;
+  readonly title?: string | null;
+  readonly message?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyCategory = {
+type LazyProductModel = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Category, 'id'>;
+    identifier: ManagedIdentifier<ProductModel, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly name?: string | null;
-  readonly description?: string | null;
-  readonly styles?: string | null;
-  readonly Products: AsyncCollection<Product>;
-  readonly images?: string | null;
+  readonly title?: string | null;
+  readonly message?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type Category = LazyLoading extends LazyLoadingDisabled ? EagerCategory : LazyCategory
+export declare type ProductModel = LazyLoading extends LazyLoadingDisabled ? EagerProductModel : LazyProductModel
 
-export declare const Category: (new (init: ModelInit<Category>) => Category) & {
-  copyOf(source: Category, mutator: (draft: MutableModel<Category>) => MutableModel<Category> | void): Category;
+export declare const ProductModel: (new (init: ModelInit<ProductModel>) => ProductModel) & {
+  copyOf(source: ProductModel, mutator: (draft: MutableModel<ProductModel>) => MutableModel<ProductModel> | void): ProductModel;
 }
 
-type EagerProduct = {
+type EagerEventModel = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Product, 'id'>;
+    identifier: ManagedIdentifier<EventModel, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly name?: string | null;
-  readonly description?: string | null;
-  readonly price?: number | null;
-  readonly style?: string | null;
-  readonly categoryID: string;
-  readonly current_stock?: string | null;
-  readonly image?: string | null;
-  readonly rating?: number | null;
+  readonly title?: string | null;
+  readonly message?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyProduct = {
+type LazyEventModel = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Product, 'id'>;
+    identifier: ManagedIdentifier<EventModel, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly name?: string | null;
-  readonly description?: string | null;
-  readonly price?: number | null;
-  readonly style?: string | null;
-  readonly categoryID: string;
-  readonly current_stock?: string | null;
-  readonly image?: string | null;
-  readonly rating?: number | null;
+  readonly title?: string | null;
+  readonly message?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type Product = LazyLoading extends LazyLoadingDisabled ? EagerProduct : LazyProduct
+export declare type EventModel = LazyLoading extends LazyLoadingDisabled ? EagerEventModel : LazyEventModel
 
-export declare const Product: (new (init: ModelInit<Product>) => Product) & {
-  copyOf(source: Product, mutator: (draft: MutableModel<Product>) => MutableModel<Product> | void): Product;
-}
-
-type EagerUserModel = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserModel, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly name?: string | null;
-  readonly phone?: string | null;
-  readonly email?: string | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-type LazyUserModel = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserModel, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly name?: string | null;
-  readonly phone?: string | null;
-  readonly email?: string | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-export declare type UserModel = LazyLoading extends LazyLoadingDisabled ? EagerUserModel : LazyUserModel
-
-export declare const UserModel: (new (init: ModelInit<UserModel>) => UserModel) & {
-  copyOf(source: UserModel, mutator: (draft: MutableModel<UserModel>) => MutableModel<UserModel> | void): UserModel;
+export declare const EventModel: (new (init: ModelInit<EventModel>) => EventModel) & {
+  copyOf(source: EventModel, mutator: (draft: MutableModel<EventModel>) => MutableModel<EventModel> | void): EventModel;
 }

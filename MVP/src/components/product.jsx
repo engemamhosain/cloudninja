@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Product as ModelProduct } from "../models";
+import { Product as ProductModel } from "../models";
 import { DataStore } from "@aws-amplify/datastore";
 
 import Navigation from "./navigation";

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Category as ModelCategory, Product } from "../models";
+import { CategoryModel, Product as ProductModel } from "../models";
 import { DataStore } from "@aws-amplify/datastore";
 
 import { List, ListItem, Icon, } from '@aws-amplify/ui-react';
@@ -59,7 +59,7 @@ const users = [
     // so we can build the filter display
     async function queryCategory() {
       try {
-        const categories = await DataStore.query(ModelCategory, (c) => 
+        const categories = await DataStore.query(CategoryModel, (c) => 
           c.name.eq(name)
         );
         if (categories) {

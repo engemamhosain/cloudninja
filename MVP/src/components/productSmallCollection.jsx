@@ -1,4 +1,4 @@
-import { Product } from "../models";
+import { ProductModel } from "../models";
 import {
   getOverrideProps,
   useDataStoreBinding,
@@ -10,7 +10,7 @@ export default function ProductSmallColllection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
-    model: Product,
+    model: ProductModel,
   }).items;
   const items = itemsProp !== undefined ? itemsProp : itemsDataStore;
   return (

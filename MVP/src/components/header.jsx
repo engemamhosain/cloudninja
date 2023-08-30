@@ -11,6 +11,7 @@ export default function Header(props) {
   const user = props?.user;
   const [visible, setVisible] = useState(false);
   let navigate = useNavigate();
+  
 
   const handleUserProfileAction = async (event) => {
         try {
@@ -39,7 +40,7 @@ export default function Header(props) {
           utilities={[
             {
               type: "menu-dropdown",
-              text: (user !== undefined) ? user.username : "Profile",
+              text: (user !== undefined) ? user.attributes.name : "Profile",
               iconName: "user-profile",
               onItemClick: handleUserProfileAction,
               items: [

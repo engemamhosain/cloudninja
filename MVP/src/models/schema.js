@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "BlogModel": {
-            "name": "BlogModel",
+        "CategoryModel": {
+            "name": "CategoryModel",
             "fields": {
                 "id": {
                     "name": "id",
@@ -42,7 +42,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "BlogModels",
+            "pluralName": "CategoryModels",
             "attributes": [
                 {
                     "type": "model",
@@ -66,8 +66,8 @@ export const schema = {
                 }
             ]
         },
-        "Category": {
-            "name": "Category",
+        "ProductModel": {
+            "name": "ProductModel",
             "fields": {
                 "id": {
                     "name": "id",
@@ -76,45 +76,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "title": {
+                    "name": "title",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "styles": {
-                    "name": "styles",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Products": {
-                    "name": "Products",
-                    "isArray": true,
-                    "type": {
-                        "model": "Product"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "categoryID"
-                        ]
-                    }
-                },
-                "images": {
-                    "name": "images",
+                "message": {
+                    "name": "message",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -138,7 +108,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Categories",
+            "pluralName": "ProductModels",
             "attributes": [
                 {
                     "type": "model",
@@ -162,8 +132,8 @@ export const schema = {
                 }
             ]
         },
-        "Product": {
-            "name": "Product",
+        "EventModel": {
+            "name": "EventModel",
             "fields": {
                 "id": {
                     "name": "id",
@@ -172,139 +142,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "title": {
+                    "name": "title",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "price": {
-                    "name": "price",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "style": {
-                    "name": "style",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "categoryID": {
-                    "name": "categoryID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "current_stock": {
-                    "name": "current_stock",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "image": {
-                    "name": "image",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "rating": {
-                    "name": "rating",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "Products",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byCategory",
-                        "fields": [
-                            "categoryID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "UserModel": {
-            "name": "UserModel",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "phone": {
-                    "name": "phone",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "email": {
-                    "name": "email",
+                "message": {
+                    "name": "message",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -328,7 +174,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "UserModels",
+            "pluralName": "EventModels",
             "attributes": [
                 {
                     "type": "model",
@@ -356,5 +202,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "5cf7b0c6326b5d70a5bb869e909c3ba7"
+    "version": "61f3fc79320896eeaca942dc7c2e3ec7"
 };

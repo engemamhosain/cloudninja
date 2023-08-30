@@ -1,34 +1,18 @@
-type BlogModel @model @auth(rules: [{allow: public}]) {
+type CategoryModel @model @auth(rules: [{allow: public}]) {
   id: ID!
   title: String
   message: String
 }
 
-type Category @model @auth(rules: [{allow: public}]) {
+type ProductModel @model @auth(rules: [{allow: public}]) {
   id: ID!
-  name: String
-  description: String
-  styles: String
-  Products: [Product] @hasMany(indexName: "byCategory", fields: ["id"])
-  images: String
+  title: String
+  message: String
 }
 
-type Product @model @auth(rules: [{allow: public}]) {
+type EventModel @model @auth(rules: [{allow: public}]) {
   id: ID!
-  name: String
-  description: String
-  price: Float
-  style: String
-  categoryID: ID! @index(name: "byCategory")
-  current_stock: String
-  image: String
-  rating: Float
-}
-
-type UserModel @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String
-  phone: String
-  email: String
+  title: String
+  message: String
 }
  
