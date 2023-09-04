@@ -1,0 +1,11 @@
+{
+  "resourceName": "s3cloudninjaevent",
+  "bucketName": "cloudninja-event",
+  "policyUUID": "106b7ee2",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ]
+}

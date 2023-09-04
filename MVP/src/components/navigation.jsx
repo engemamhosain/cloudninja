@@ -6,7 +6,7 @@ import SideNavigation from "@cloudscape-design/components/side-navigation";
 
 export default function Navigation(props) {
     
-    const SIDE_NAV=[{name:"EVENT",link:"event"},{name:"LEARNING PORTAL",link:"portal"},{name:"BLOG",link:"blog"},{name:"USER MANAGEMENT",link:"users"},{name:"ROOM",link:"room"},{name:"NOTES",link:"notes"}]
+    const SIDE_NAV=[{name:"EVENT",link:"event"},{name:"ADD NEW EVENT",link:"add-new-event"},{name:"LEARNING PORTAL",link:"portal"},{name:"BLOG",link:"blog"},{name:"USER MANAGEMENT",link:"users"},{name:"ROOM",link:"room"},{name:"NOTES",link:"notes"}]
     let navigate = useNavigate();
     const [data] = useState([]);
     // handle navigation changes

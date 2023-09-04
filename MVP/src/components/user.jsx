@@ -4,8 +4,8 @@ import { CategoryModel, Product as ProductModel } from "../models";
 import { DataStore } from "@aws-amplify/datastore";
 
 import { List, ListItem, Icon, } from '@aws-amplify/ui-react';
-
-import { Auth } from 'aws-amplify';
+import AWS from "aws-sdk";
+import { Auth,API } from 'aws-amplify';
 
 import {
   Table,
@@ -36,57 +36,37 @@ export default function Category() {
   const [products, setProducts] = useState([]); //products is a list of the products to display filtered down
   const [allStyles, setAllStyles] = useState([]); //allStyles is a list of all the styles for building the filters
   const [filteredStyles, setFilteredStyles] = useState([]); //filteredStyles is a list of styles that are selected for filtering
+  const [users,setUsers] = useState([])
 
-
-
-
-// 2			
-// 3		
-
-
-const users = [
-    { name: 'Mohammad Zaman',phone:"+1-917-648-0034",email:"mohammad.zaman@cloudcampbd.com", icon: 'fas fa-user' },
-    { name: 'Md. Mahamudur Rahman Sohag',phone:"+880-1711-475-567",email:"mahamudur.rahman@cloudcampbd.com ", icon: 'fas fa-user' },
-    { name: 'Emam Hosain	',phone:"+880-1750-841-137",email:"engemamhosain@gmail.com", icon: 'fas fa-user' },
-    { name: 'Abdullah Al Reza',phone:"+880-1917-897-919",email:"reza.ict@gmail.com", icon: 'fas fa-user' },
-    { name: 'Sanjoy K Paul	',phone:"+880-1511-927-992",email:"skpaul@DevsStation.com", icon: 'fas fa-user' },
-    { name: 'Naim Hossen',phone:"+880-1750-565-053",email:"naimhossenpro@gmail.com", icon: 'fas fa-user' }
-   
-  ];
 
   useEffect(() => {
-    // Query for categories to get all the styles that make up that category
-    // so we can build the filter display
-    async function queryCategory() {
-      try {
-        const categories = await DataStore.query(CategoryModel, (c) => 
-          c.name.eq(name)
-        );
-        if (categories) {
-          setAllStyles(categories[0].styles);
-          return categories[0].id;
+    
+      async function listUsers(){
+          try{
+        
+              AWS.config.update({ 
+                accessKeyId: 'AKIAQSFI3SF3JUAAOS4O',
+                secretAccessKey: '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',
+                region: 'ap-south-1' 
+                
+              });
+              const params = {
+                UserPoolId: 'ap-south-1_3bWiWzyPK', // Replace with your Cognito User Pool ID
+              };
+             const cognito = new AWS.CognitoIdentityServiceProvider();
+             const data = await cognito.listUsers(params).promise(); 
+             setUsers()
+             console.log(data)
+        
+           
+            }catch(err){
+              console.log(err)
+            }
+           
         }
-      } catch (error) {
-        console.log("Error retrieving category", error);
-      }
-    }
-    
-    
-     async function fetchAllUsers() {
-      try {
-        const userList = await Auth.listUsers();
-        console.log(userList)
-       // setUsers(userList);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    }
-
-    
-   // fetchAllUsers()
-
+      listUsers()
   
-  }, [name, filteredStyles, prevName]);
+  }, [users]);
 
   // overrides for our collection
   // Change the style of the collection to be a list on smaller screen formats and grid
@@ -108,35 +88,6 @@ const users = [
     },
   };
   
-  
-  // return (
-  //   <div style={styles.tableContainer}>
-  //     <Table style={styles.table}>
-  //       <TableHead>
-  //         <TableRow>
-  //           <TableCell style={styles.tableHeader}>Name</TableCell>
-  //           <TableCell style={styles.tableHeader}>Age</TableCell>
-  //           <TableCell style={styles.tableHeader}>Email</TableCell>
-  //         </TableRow>
-  //       </TableHead>
-  //       <TableBody>
-  //         {users.map((row, index) => (
-  //           <TableRow key={index} style={styles.mobileView.tableRow}>
-  //             <TableCell style={styles.mobileView.tableHeaderCell}>
-  //               <strong>Name:</strong> {row.name}
-  //             </TableCell>
-  //             <TableCell style={styles.mobileView.tableCell}>
-  //               <strong>Age:</strong> {row.age}
-  //             </TableCell>
-  //             <TableCell style={styles.mobileView.tableCell}>
-  //               <strong>Email:</strong> {row.email}
-  //             </TableCell>
-  //           </TableRow>
-  //         ))}
-  //       </TableBody>
-  //     </Table>
-  //   </div>
-  // );
 
   return (
     <AppLayout
@@ -149,27 +100,27 @@ const users = [
         <ContentLayout>
           <Container>
        
-    <h2>Users</h2>
-      <ThemeProvider theme={theme} colorMode="light">
-    <Table highlightOnHover variation="striped" >
-      <TableHead>
-        <TableRow>
-          <TableCell as="th">Name </TableCell>
-          <TableCell as="th">Email</TableCell>
-          <TableCell as="th">Phone</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {users.map((user, index) => (
-          <TableRow>
-            <TableCell>{user.name}</TableCell>
-            <TableCell>{user.email}</TableCell>
-            <TableCell>{user.phone}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </ThemeProvider>
+          <h2>Users</h2>
+          <ThemeProvider theme={theme} colorMode="light">
+            <Table highlightOnHover variation="striped" >
+              <TableHead>
+                <TableRow>
+                  <TableCell as="th">Name </TableCell>
+                  <TableCell as="th">Email</TableCell>
+                  <TableCell as="th">Phone</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {users.map((user, index) => (
+                  <TableRow>
+                    <TableCell>{user.attributes.name}</TableCell>
+                    <TableCell>{user.email}</TableCell>
+                    <TableCell>018xxxxxxxx</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+           </ThemeProvider>
           </Container>
         </ContentLayout>
       }

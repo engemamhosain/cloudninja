@@ -72,8 +72,10 @@ type EagerEventModel = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly title?: string | null;
+  readonly name?: string | null;
   readonly message?: string | null;
+  readonly date?: string | null;
+  readonly image?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -84,8 +86,10 @@ type LazyEventModel = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly title?: string | null;
+  readonly name?: string | null;
   readonly message?: string | null;
+  readonly date?: string | null;
+  readonly image?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

@@ -12,7 +12,9 @@ type ProductModel @model @auth(rules: [{allow: public}]) {
 
 type EventModel @model @auth(rules: [{allow: public}]) {
   id: ID!
-  title: String
+  name: String
   message: String
+  date: AWSDate
+  image: String
 }
  

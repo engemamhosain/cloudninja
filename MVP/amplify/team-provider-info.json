@@ -15,6 +15,9 @@
       "auth": {
         "cloudninja": {},
         "cloudninja5b55da32": {}
+      },
+      "storage": {
+        "s3cloudninjaevent": {}
       }
     }
   },

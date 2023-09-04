@@ -142,8 +142,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "title": {
-                    "name": "title",
+                "name": {
+                    "name": "name",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -151,6 +151,20 @@ export const schema = {
                 },
                 "message": {
                     "name": "message",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "date": {
+                    "name": "date",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "image": {
+                    "name": "image",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -202,5 +216,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "61f3fc79320896eeaca942dc7c2e3ec7"
+    "version": "bdc6ee0bfe64ce797e606efc6995f591"
 };
