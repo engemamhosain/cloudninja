@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { CategoryModel, Product as ProductModel } from "../models";
-import { DataStore } from "@aws-amplify/datastore";
 
-import { List, ListItem, Icon, } from '@aws-amplify/ui-react';
 import AWS from "aws-sdk";
-import { Auth,API } from 'aws-amplify';
+
 
 import {
   Table,
@@ -18,24 +14,14 @@ import {
 } from '@aws-amplify/ui-react';
 
 import Navigation from "./navigation";
-import ProductMediumCollection from "./productMediumCollection";
 
 import AppLayout from '@cloudscape-design/components/app-layout';
 import Container from "@cloudscape-design/components/container";
-import Header from "@cloudscape-design/components/header";
-import Multiselect from "@cloudscape-design/components/multiselect";
-import ContentLayout from "@cloudscape-design/components/content-layout";
-import SpaceBetween from "@cloudscape-design/components/space-between";
-import { useBreakpointValue } from "@aws-amplify/ui-react";
 
-export default function Category() {
-  // this component is used when something hits /category/{name}
-  // name is used to represent the category we are viewing
-  const { name } = useParams();
-  const [prevName, setPrevName] = useState(""); //prevName allows us to see if the category has changed
-  const [products, setProducts] = useState([]); //products is a list of the products to display filtered down
-  const [allStyles, setAllStyles] = useState([]); //allStyles is a list of all the styles for building the filters
-  const [filteredStyles, setFilteredStyles] = useState([]); //filteredStyles is a list of styles that are selected for filtering
+import ContentLayout from "@cloudscape-design/components/content-layout";
+
+export default function User() {
+
   const [users,setUsers] = useState([])
 
 
@@ -55,7 +41,10 @@ export default function Category() {
               };
              const cognito = new AWS.CognitoIdentityServiceProvider();
              const data = await cognito.listUsers(params).promise(); 
-             setUsers()
+             if(data.Users){
+                setUsers(data.Users)
+             }
+            
              console.log(data)
         
            
@@ -64,30 +53,40 @@ export default function Category() {
             }
            
         }
-      listUsers()
+        if(users.length===0){
+          listUsers()
+        }
+      
   
   }, [users]);
 
-  // overrides for our collection
-  // Change the style of the collection to be a list on smaller screen formats and grid
-  // on larger formats. Also change the items displayed depending on the screen size
-  const overrides = {
-    ProductMediumCollection: {
-      type: useBreakpointValue({
-        small: "list",
-        base: "list",
-        medium: "grid",
-      }),
-      itemsPerPage: useBreakpointValue({
-        base: "5",
-        small: "5",
-        medium: "10",
-        large: "10",
-        xl: "10",
-      }),
-    },
-  };
+
+
+  function getName(Attributes){
+    let name="";
+    Attributes.forEach((item, index) => {
+      if(item.Name==="name"){
+
+        name= item.Value
+      }
+
+    });
+ 
+    return name
+  }
   
+  function getEmail(Attributes){
+     let name="";
+    Attributes.forEach((item, index) => {
+      if(item.Name==="email"){
+
+        name= item.Value
+      }
+
+    });
+ 
+    return name
+  }
 
   return (
     <AppLayout
@@ -112,9 +111,10 @@ export default function Category() {
               </TableHead>
               <TableBody>
                 {users.map((user, index) => (
+                  
                   <TableRow>
-                    <TableCell>{user.attributes.name}</TableCell>
-                    <TableCell>{user.email}</TableCell>
+                    <TableCell>{getName(user.Attributes)}</TableCell>
+                    <TableCell>{getEmail(user.Attributes)}</TableCell>
                     <TableCell>018xxxxxxxx</TableCell>
                   </TableRow>
                 ))}
@@ -159,43 +159,3 @@ const theme: Theme = {
   },
 };
 
-
-// const styles = {
-//   tableContainer: {
-//     overflowX: 'auto',
-//   },
-//   table: {
-//     width: '100%',
-//     borderCollapse: 'collapse',
-//   },
-//   tableHeader: {
-//     padding: '10px',
-//     border: '1px solid #ccc',
-//     textAlign: 'left',
-//   },
-//   tableCell: {
-//     padding: '10px',
-//     border: '1px solid #ccc',
-//     textAlign: 'left',
-//   },
-//   mobileView: {
-//     '@media (max-width: 768px)': {
-//       tableHeader: {
-//         display: 'none',
-//       },
-//       tableRow: {
-//         display: 'block',
-//         marginBottom: '20px',
-//         border: '1px solid #ccc',
-//       },
-//       tableHeaderCell: {
-//         display: 'block',
-//         padding: '5px', // Adjust padding for mobile
-//       },
-//       tableCell: {
-//         display: 'block',
-//         padding: '5px', // Adjust padding for mobile
-//       },
-//     },
-//   },
-// };
